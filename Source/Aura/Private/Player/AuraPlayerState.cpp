@@ -2,8 +2,17 @@
 
 
 #include "Player/AuraPlayerState.h"
+#include "AbilitySystemComponent.h"
 
 AAuraPlayerState::AAuraPlayerState()
 {
+	AbilityComponentSystem = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilityCompontSystem"));
+	AbilityComponentSystem->SetIsReplicated(true);
+	AttributeSet=CreateDefaultSubobject<UAttributeSet>("AttributeSet");
 	SetNetUpdateFrequency(100.f);
+}
+
+UAbilitySystemComponent* AAuraPlayerState::GetAbilitySystemComponent() const
+{
+	return AbilityComponentSystem;
 }
