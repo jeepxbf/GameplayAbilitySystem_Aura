@@ -25,11 +25,6 @@ AAuraCharacter::AAuraCharacter()
 void AAuraCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	if (AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>())
-	{
-		AbilityComponentSystem = AuraPlayerState->GetAbilitySystemComponent();
-		AttributeSet = AuraPlayerState->GetAttributeSet();
-	}
 	InitAbilityActorInfo();
 }
 
@@ -44,5 +39,7 @@ void AAuraCharacter::InitAbilityActorInfo()
 	if (AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>())
 	{
 		AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
+		AbilityComponentSystem = AuraPlayerState->GetAbilitySystemComponent();
+		AttributeSet = AuraPlayerState->GetAttributeSet();
 	}
 }
